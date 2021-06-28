@@ -1,8 +1,4 @@
----
-title: What is a Blockchain?
-metaTitle: What is a blockchain?
----
-
+# What is a Blockchain?
 
 Ever since the beginning, people have been trying to figure out how to get rid of the middleman. Every time you login somewhere on the internet, whether it’s Facebook or your bank, that’s a middleman. And the middleman owns and controls the database you log into. On the internet, up until recently, there was nothing but middlemen.
 
