@@ -4,14 +4,14 @@
    :titlesonly:
    :hidden:
 
-   What is a blockchain? <new-to-bosagora/what-is-a-blockchain.md>
-   What is a cryptocurrency? <new-to-bosagora/what-is-a-cryptocurrency.md>
-   Why Bosagora? <new-to-bosagora/why-bosagora.md>
-   What is Bosagora? <new-to-bosagora/what-is-bosagora.md>
-   Trust Contracts <new-to-bosagora/trust-contracts.md>
-   Proof of Stake <new-to-bosagora/proof-of-stake.md>
-   Bosagora nodes <new-to-bosagora/bosagora-nodes.md>
-   How to purchase BOA <new-to-bosagora/how-to-purcahse-boa.md>
+   What is a blockchain? <new-to-bosagora/01-what-is-a-blockchain.md>
+   What is a cryptocurrency? <new-to-bosagora/02-what-is-a-cryptocurrency.md>
+   Why Bosagora? <new-to-bosagora/03-why-bosagora.md>
+   What is Bosagora? <new-to-bosagora/04-what-is-bosagora.md>
+   Trust Contracts <new-to-bosagora/05-trust-contracts.md>
+   Proof of Stake <new-to-bosagora/06-proof-of-stake.md>
+   Bosagora nodes <new-to-bosagora/07-bosagora-nodes.md>
+   How to purchase BOA <new-to-bosagora/08-how-to-purcahse-boa.md>
    
 .. toctree::
    :maxdepth: 3
