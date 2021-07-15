@@ -1,4 +1,4 @@
-# Turst Contracts
+# Trust Contracts
 
 To add smart contract functionality to blockchain requires a couple of things. First, you’ll need some kind of programming language to create the kind of complex math and algorithms necessary to implement business rules on blockchain.
 
@@ -14,4 +14,4 @@ Trust Contracts enable programming of decidable contracts, either by using a fle
 
 To overcome performance limitation inherent in blockchain, Trust Contracts utilize [WebAssembly](https://developer.mozilla.org/en-US/docs/WebAssembly). WebAssembly provides a way to run code, written in multiple languages, on the web at near native speed, with client apps running on the web that previously couldn’t have done so.
 
-The ultimate goal of this architecture is to be able users to build a de
+The ultimate goal of this architecture is to enble users to build a dedecidable contract, which ensures safe and accurate execution, while maximizing its scalability.
