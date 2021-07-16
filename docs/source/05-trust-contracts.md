@@ -14,4 +14,4 @@ Trust Contracts enable programming of decidable contracts, either by using a fle
 
 To overcome performance limitation inherent in blockchain, Trust Contracts utilize [WebAssembly](https://developer.mozilla.org/en-US/docs/WebAssembly). WebAssembly provides a way to run code, written in multiple languages, on the web at near native speed, with client apps running on the web that previously couldn’t have done so.
 
-The ultimate goal of this architecture is to enble users to build a dedecidable contract, which ensures safe and accurate execution, while maximizing its scalability.
+The ultimate goal of this architecture is to enable users to build a decidable contract, which ensures safe and accurate execution, while maximizing its scalability.
