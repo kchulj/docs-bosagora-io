@@ -2,7 +2,7 @@
 
 ## The UTXO Model
 
-Receiving and spending BOA is similar to how it’s done in Bitcoin in that all transactions involve UTXOs. UTXO, or *unspent transaction output*, is a fancy way of saying unspent coins or tokens. In other words, all transactions of BOA involve previously unspent BOA tokens.
+Receiving and spending BOA is similar to how it’s done in Bitcoin in that all transactions involve UTXOs. UTXO, or *unspent transaction output*, is a fancy way of saying unspent coins or tokens. In other words, all transactions of BOA involve previously unspent BOA.
 
 Recall that one of the big challenges to decentralized cryptocurrency is the double spend problem. The UTXO model of cryptocurrency solves that problem by preventing double spending. How does it do that?
 
