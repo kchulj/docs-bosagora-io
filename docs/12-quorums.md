@@ -2,7 +2,7 @@
 
 ## Overview
 
-Recall that FBA protocols implement a non-unanimous consensus mechanism by grouping nodes into groups known quorums. In general, a quorum is the minimum number of people who must participate in a vote in order for a certain proposal to be executed. In the early stage of the Bosagora platform, a quorum for resolution was set to one third of the total members. However, this can be adjusted later to reflect the average participation rate.
+Recall that FBA protocols implement a non-unanimous consensus mechanism by grouping nodes into groups known as quorums. In general, a quorum is the minimum number of people who must participate in a vote in order for a certain proposal to be executed. In the early stage of the Bosagora platform, a quorum for resolution was set to one-third of the total members. However, this can be adjusted later to reflect the average participation rate.
 
 Initially, quorums were based on Stellar’s consensus protocol (SCP). But it has a weak point. The quorums on Stellar are configured manually by each node maintainer. This can lead to too much centralization if the quorums aren’t configured properly. Bosagora addresses that shortcoming by using *quorum balancing* (see below).
 
@@ -21,9 +21,9 @@ There are several checks to make sure quorums are generated correctly:
 
 ## Quorum Slicing
 
-In an effort to incorporate trusted business relationships into the consensus process, FBA introduced the concept of a *quorum slice*. A quorum slice is a subset of nodes in a quorum that a given node chooses to trust and depend on. Validators get to decide which other validators they trust, and their list of trusted validators becomes their quorum slice. 
+In an effort to incorporate trusted business relationships into the consensus process, FBA introduced the concept of a *quorum slice*. A quorum slice is a subset of nodes in a quorum that a given node chooses to trust and depend on. Validators get to decide which other validators they trust, and their list of trusted validators becomes their quorum slice.
 
-Every Bosagora validator node must be part of at least one quorum slice. A individual validator node can however appear in multiple quorum slices. Using quorum slices of trusted nodes not only produces quicker consensus, but also ensures greater stability and reliability. Because these trusted nodes carry more weight in reaching consensus, even if a bad actor were to add a million malicious nodes to the network, it won’t have any effect unless they can convince a critical mass of nodes to include them in their quorum slices.
+Every Bosagora validator node must be part of at least one quorum slice. An individual validator node can however appear in multiple quorum slices. Using quorum slices of trusted nodes not only produces quicker consensus but also ensures greater stability and reliability. Because these trusted nodes carry more weight in reaching consensus, even if a bad actor were to add a million malicious nodes to the network, it won’t have any effect unless they can convince a critical mass of nodes to include them in their quorum slices.
 
 ## Quorum Balancing
 
@@ -31,6 +31,6 @@ The problem with letting validators manually configure quorums is the opportunit
 
 The idea is to make quorum configuration completely automated so there is no need for manual quorum configuration. Bosagora uses the set of all registered validators to automatically generate each node’s quorum set. This ensures the quorum configuration is sufficiently decentralized.
 
-How does Bosagora ensure fairness in the configuration process? By using the pre-imaging technology from the consensus protocol to derive a randomness seed. This seed is then used as input to a deterministic pseudo-random number generator (PRNG). The PRNG then  generates a specific sequence of numbers for a given seed (which ensures verifiability). This seed is then used to introduce randomness into the quorum.
+How does Bosagora ensure fairness in the configuration process? By using the pre-imaging technology from the consensus protocol to derive a randomness seed. This seed is then used as input to a deterministic pseudo-random number generator (PRNG). The PRNG then generates a specific sequence of numbers for a given seed (which ensures verifiability). This seed is then used to introduce randomness into the quorum.
 
-To further ensure fairness and randomness, the quorums are shuffled at specified intervals. This activity is referred to as *quorum rebalancing*. Currently quorum rebalancing happens every hour.
+To further ensure fairness and randomness, the quorums are shuffled at specified intervals. This activity is referred to as *quorum rebalancing*. Currently, quorum rebalancing happens every hour.

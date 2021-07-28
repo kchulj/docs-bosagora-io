@@ -8,9 +8,9 @@ The main problem with scaling blockchain is the fact that every transaction is p
 
 ## The Solution
 
-The solution to the blockchain scalability challenge is to not make every transaction public. Frequently in business, two parties will do multiple transactions between them before they need to terminate that piece of business. Being able to take a multitude of transactions “off-chain” and onto layer 2 is a way to dramatically improve the transaction speed, and therefore scalability of the blockchain. And that is precisely how Bosagora addresses the scalability issue.
+The solution to the blockchain scalability challenge is to not make every transaction public. Frequently in business, two parties will do multiple transactions between them before they need to terminate that piece of business. Being able to take a multitude of transactions “off-chain” and onto layer 2 is a way to dramatically improve the transaction speed and therefore scalability of the blockchain. And that is precisely how Bosagora addresses the scalability issue.
 
-Bosagora uses *payment channels* which enable two parties to carry out everyday transactions between them without requiring approval from the blockchain. Then they only do net settlement of all their transactions on chain when needed.
+Bosagora uses *payment channels* which enable two parties to carry out everyday transactions between them without requiring approval from the blockchain. Then they only do net settlement of all their transactions on-chain when needed.
 
 Payment channels use a  second-layer payment protocol built on top of the Bosagora network. They are opened with an on-chain transaction and remain open until one or both parties decide to close the channel. While the channel is open, all communication happens only between the two parties.
 
@@ -21,9 +21,9 @@ The benefits of these payment channels include the following:
 + Users do not need to open channels to every merchant individually
 + Fees are significantly smaller than on-chain fees
 + Payments are almost instantaneous. No waiting time for block confirmations.
-+ Scales to millions of users, and near infinite transactions/second
++ Scales to millions of users, and near-infinite transactions/second
 
-The idea of payment channels lead to the Bosagora *Flash Layer*.
+The idea of payment channels led to the Bosagora *Flash Layer*.
 
 ## Flash Layer
 
@@ -31,13 +31,13 @@ The Bosagora Flash Layer implements an improved version of Eltoo channels. [Elto
 
 ### Opening a Channel
 
-Channels are opened by the peer that provides the initial funds. This peer is referred to as the *funding peer*. Channels are marked as open with an on-chain transaction called the *funding transaction*. With funding transactions, the funds are locked with a multisig. The funds can only be consumed in a manner that both peers mutually agree on and provide the signatures for.
+Channels are opened by the peer that provides the initial funds. This peer is referred to as the *funding peer*. Channels are marked as open with an on-chain transaction called the *funding transaction*. With funding transactions, the funds are locked with a multi-sig. The funds can only be consumed in a manner that both peers mutually agree on and provide the signatures for.
 
 The steps are as follows:
 
 1. The funding peer first creates the funding transaction and proposes opening a new channel to its peer, because publishing the funding transaction without any communication with the peer may result in losing the allocated funds forever.
 2. The peer either rejects the channel according to its own configuration or accepts it, which triggers a set of additional steps before the channel is actually opened.
-3. Before the funding peer can publish the funding transaction, two off-chain transactions are created and the peers exchange their signatures for them. These transactions are called *trigger* and *settlement*. They give both parties the means to close the channel at any point. The trigger transaction is an off-chain transaction which spends the funds from the funding transaction. If published to the blockchain, it begins a *non-collaborative channel close*.
+3. Before the funding peer can publish the funding transaction, two off-chain transactions are created and the peers exchange their signatures for them. These transactions are called *trigger* and *settlement*. They give both parties the means to close the channel at any point. The trigger transaction is an off-chain transaction that spends the funds from the funding transaction. If published to the blockchain, it begins a *non-collaborative channel close*.
 4. Once the funding peer collects the required signatures for trigger and settlement transactions, it publishes the funding transaction to the Bosagora network.
 5. Both peers continuously monitor the blockchain for externalization of the funding transaction. Externalization of the funding transaction marks the opening of the channel on the blockchain and the Flash nodes start accepting payments on the newly opened channel after that.
 
@@ -49,25 +49,25 @@ Since the funding transaction is no different than any other transaction, no nod
 
 *Update transactions* attach to the trigger transaction or to a previous update transaction. These update transactions are only published to the blockchain in case of an uncollaborative channel close.
 
-*Settlement transactions* may only attach to exactly the previous trigger or update transaction.  Settlement transactions contains the current balance distribution between the channel parties. Settlement transactions cannot be externalized until their relative time lock expires. Once they are externalized, that marks the close of the channel. See the figure below for a visual depiction of a representative transaction.
+*Settlement transactions* may only attach to exactly the previous trigger or update transaction.  Settlement transactions contain the current balance distribution between the channel parties. Settlement transactions cannot be externalized until their relative time lock expires. Once they are externalized, that marks the close of the channel. See the figure below for a visual depiction of a representative transaction.
 
 ![funding transaction](funding-transaction.png)
 
 ### Sequence IDs
 
-In other layer-2 implementations like Lightning Network of Bitcoin, if one of the parties tries to cheat and close the channel with an outdated balance, the other peer has the right to penalize them and get all the funds in the channel. Bosagora solves this using an improved Eltoo implementation with sequence IDs. Each trigger and update transaction has a lock script like the one below.
+In other layer-2 implementations like Lightning Network of Bitcoin, if one of the parties tries to cheat and close the channel with an outdated balance, the other peer has the right to penalize them and get all the funds in the channel. Bosagora solves this using an improved Eltoo implementation with sequence IDs. Each trigger and update transaction has a locked script like the one below.
 
 OP.IF
 
-    <update-tx-key> <min-sequence-id> OP.VERIFY_SEQ_SIG 
+    <update-tx-key> <min-sequence-id> OP.VERIFY_SEQ_SIG
 OP.ELSE
 
     <relative-timelock> OP.VERIFY_UNLOCK_AGE
     <settlement-tx-key> <sequence-id> OP.VERIFY_SEQ_SIG
-    
+
 OP.ENDIF
 
-The IF branch ensures that only an update transaction with newer sequence id can consume the given trigger/update transaction, without any timelock. The ELSE branch allows the corresponding settlement transaction to consume the trigger/update transaction after the timelock expires. With each update/trigger transaction, a new timelock starts, allowing the other party to override it with a newer update transaction if they have one.
+The IF branch ensures that only an update transaction with a newer sequence id can consume the given trigger/update transaction, without any timelock. The ELSE branch allows the corresponding settlement transaction to consume the trigger/update transaction after the timelock expires. With each update/trigger transaction, a new timelock starts, allowing the other party to override it with a newer update transaction if they have one.
 
 This scheme ensures that nodes have enough time to overrule any non-collaborative channel close attempt with a newer update transaction. In the current version of the Bosagora Flash Layer, timelocks are set for 16 blocks, which on average gives a little less than 3 hours of time for nodes to react to a non-collaborative channel close.
 
@@ -87,7 +87,7 @@ The Bosagora Flash Layer allows *multi-hop payments*. The Flash Layer finds a pa
 
 Multihop payments require the following six steps:
 
-1. Path finding
+1. Pathfinding
 2. Onion encryption
 3. Path probing
 4. Channel updates
@@ -95,10 +95,10 @@ Multihop payments require the following six steps:
 6. Trustless payment forwarding
 
 All six steps are discussed in detail below.
- 	
+
 #### Path finding
 
-The first step in supporting multi-hop payments is finding a series of channels that can route the required amount from payer to payee.The Gossip protocol in the Flash Layer tries to make sure that all nodes are aware of all open channels in the network. Using a graph of all the open channels, the originating node tries to minimize the total fees along the path while making sure that channels have enough capacity to forward the amount that it is trying to route. The path finding algorithm also allocates fees to each node on the path for the liquidity they provide.
+The first step in supporting multi-hop payments is finding a series of channels that can route the required amount from payer to payee. The Gossip protocol in the Flash Layer tries to make sure that all nodes are aware of all open channels in the network. Using a graph of all the open channels, the originating node tries to minimize the total fees along the path while making sure that channels have enough capacity to forward the amount that it is trying to route. The pathfinding algorithm also allocates fees to each node on the path for the liquidity they provide.
 
 #### Onion encryption
 
@@ -112,19 +112,19 @@ Since paths can fail to forward the payment, there must be a way to retry a diff
 
 #### Channel updates
 
-Some public properties of the channels can be updated throughout the channel’s lifetime with a *channel update message* gossiped to the Flash Layer. Update messages carry critical information for path finding such as the most recent fee rate that the channel has.
+Some public properties of the channels can be updated throughout the channel’s lifetime with a *channel update message* gossiped to the Flash Layer. Update messages carry critical information for pathfinding such as the most recent fee rate that the channel has.
 
 #### Invoices
 
-An *invoice* represents a payment between two nodes and is used to keep track of the payments. Invoices are generated by the payee and sent to the payer through some medium (QR codes, NFC etc.) outside of the Flash Layer.
+An *invoice* represents a payment between two nodes and is used to keep track of the payments. Invoices are generated by the payee and sent to the payer through some medium (QR codes, NFC, etc.) outside of the Flash Layer.
 
 #### Trustless payment forwarding
 
-For multi-hop payments to work in a decentralized system, there must be a way to forward the payment in a trustless way. In the Flash Layer, this is made possible with the use of *Hashed Timelock Contracts* (HTLC). HTLCs allow for a payment to be redeemed only if a secret is revealed, otherwise the payment is revoked at the end of a timelock.
+For multi-hop payments to work in a decentralized system, there must be a way to forward the payment in a trustless way. In the Flash Layer, this is made possible with the use of *Hashed Timelock Contracts* (HTLC). HTLCs allow for a payment to be redeemed only if a secret is revealed, otherwise, the payment is revoked at the end of a timelock.
 
 ![hashed timelock contracts](hashed-timelock-contracts.png)
 
-In the example above, Party A generates a random secret and creates a HTLC with a timelock of 6 blocks and hash of the newly generated secret. If Party A reveals the secret to Party B, Party B can redeem the funds using that secret or Party A can get back the funds after timelock of 6 blocks expires. This 9-step sequence is depicted in the graphic below:
+In the example above, Party A generates a random secret and creates an HTLC with a timelock of 6 blocks and the hash of the newly generated secret. If Party A reveals the secret to Party B, Party B can redeem the funds using that secret or Party A can get back the funds after the timelock of 6 blocks expires. This 9-step sequence is depicted in the graphic below:
 
 (1) The payee generates a secret and passes the hash of the secret to the payee in the invoice.
 (2 – 5) Using that hash, HTLCs are created at each hop of the path, locking the funds in each channel until a timeout expires. Once the chain of HTLCs reaches the payee, it has to reveal the random secret to the previous node to be able to get the payment.
@@ -134,7 +134,4 @@ In the example above, Party A generates a random secret and creates a HTLC with 
 
 Once all HTLCs are resolved, intermediate nodes are left with a small profit they made off their fee. If for some reason, a payee never reveals the secret, all HTLCs on the path expire, one by one, starting from the node furthest away from the originating node and all nodes receive their funds back.
 
-Multi-hop payments enable the Flash Layer to scale to near infinite, low fee and almost instantaneous transactions per second trustlessly, while also providing incentive for parties to operate a Flash node and provide liquidity to the network.
-
-
-
+Multi-hop payments enable the Flash Layer to scale to near-infinite, low fee and almost instantaneous transactions per second trustlessly, while also providing incentive for parties to operate a Flash node and provide liquidity to the network.
