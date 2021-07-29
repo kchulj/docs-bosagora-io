@@ -25,6 +25,7 @@ theme:
     - search.highlight
     - search.share
     - search.suggest
+    - toc.integrate
 
   favicon: assets/favicon.ico
   logo: assets/favicon.ico
