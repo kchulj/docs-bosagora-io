@@ -2,7 +2,9 @@
 
 ## [bosagora/agora](https://github.com/bosagora/agora)
 
-### [v0.15.0: Signature fixes, flash fees, better stats & config](https://github.com/bosagora/agora/releases/tag/v0.15.0) <small>_ 2021-07-27</small>
+### [v0.15.0](https://github.com/bosagora/agora/releases/tag/v0.15.0) <small>_ 2021-07-27</small>
+
+**Signature fixes, flash fees, better stats & config**  
 
 Major improvements since v0.14.0:
 
@@ -11,7 +13,9 @@ Major improvements since v0.14.0:
 - Flash: Funding tx fee and closing tx fees are now supported;
 - Block stats will now always be generated, even when no block has been generated yet;
 
-### [v0.14.0: Guaranteed block time, integration fixes, many preimages, timer optimizations](https://github.com/bosagora/agora/releases/tag/v0.14.0) <small>_ 2021-07-24</small>
+### [v0.14.0](https://github.com/bosagora/agora/releases/tag/v0.14.0) <small>_ 2021-07-24</small>
+
+**Guaranteed block time, integration fixes, many preimages, timer optimizations**  
 
 Major improvements since v0.13.0:
 
@@ -23,7 +27,9 @@ Major improvements since v0.13.0:
 - Various timers used for recurring tasks have been optimized to only fire when necessary, instead of a fixed regular interval;
 - Agora will now longer automatically sign blocks when catching up, to avoid potential double signatgure issues;
 
-### [v0.13.0: Signature adjustment, DoS prevent, Talos & SCP overhaul](https://github.com/bosagora/agora/releases/tag/v0.13.0) <small>_ 2021-07-19</small>
+### [v0.13.0](https://github.com/bosagora/agora/releases/tag/v0.13.0) <small>_ 2021-07-19</small>
+
+**Signature adjustment, DoS prevent, Talos & SCP overhaul**  
 
 Major improvements since v0.12.0:
 
@@ -61,7 +67,9 @@ Major improvements since v0.12.0:
 - Pre-images are now shared during SCP nomination to reduce the odds of slashing;
 - Removed FullNode's `getPreimage` endpoint, obsoleted by `getPreimages`;
 
-### [v0.12.0: Better stats, `TxBuilder` improvements and bugfix, `/validators` endpoint](https://github.com/bosagora/agora/releases/tag/v0.12.0) <small>_ 2021-06-17</small>
+### [v0.12.0](https://github.com/bosagora/agora/releases/tag/v0.12.0) <small>_ 2021-06-17</small>
+
+**Better stats, `TxBuilder` improvements and bugfix, `/validators` endpoint**  
 
 Major improvements since v0.11.0:
 
@@ -80,7 +88,9 @@ Major improvements since v0.11.0:
 
 Along with many internal changes to improve efficiency and reduce the risk of error.
 
-### [v0.11.0: Better Flash notifications, runtime logger configuration, SCP cleanup](https://github.com/bosagora/agora/releases/tag/v0.11.0) <small>_ 2021-06-10</small>
+### [v0.11.0](https://github.com/bosagora/agora/releases/tag/v0.11.0) <small>_ 2021-06-10</small>
+
+**Better Flash notifications, runtime logger configuration, SCP cleanup**  
 
 Major changes since v0.10.0:
 
@@ -95,7 +105,9 @@ Major changes since v0.10.0:
 - Serialization now always serialize to little endian regardless of the host;
 - Multiple stability improvements / race conditions fixed;
 
-### [v0.10.0: Extra syntax checks on lock script, improved Votera support, HTTPS](https://github.com/bosagora/agora/releases/tag/v0.10.0) <small>_ 2021-06-06</small>
+### [v0.10.0](https://github.com/bosagora/agora/releases/tag/v0.10.0) <small>_ 2021-06-06</small>
+
+**Extra syntax checks on lock script, improved Votera support, HTTPS**  
 
 Major changes since v0.9.0:
 
@@ -111,40 +123,42 @@ Major changes since v0.9.0:
 - Support for HTTPS communication has been added;
 - Consensus: Validators will now reject blocks with non-monotonic `missing` validators;
 
-### [v0.9.0: Passive slashing, per-output type, better setup and debug experience](https://github.com/bosagora/agora/releases/tag/v0.9.0) <small>_ 2021-06-01</small>
+### [v0.9.0](https://github.com/bosagora/agora/releases/tag/v0.9.0) <small>_ 2021-06-01</small>
+
+**Passive slashing, per-output type, better setup and debug experience**  
 
 Major changes since v0.8.1:
 
-Pre-images are now used to generate block signatures
+- Pre-images are now used to generate block signatures
+    - Block signatures are now based on pre-images for the "signature noise" derivation.
+      This implements one of the aspect of Agora's passive slashing policy,
+      which is that signing two blocks for the same height reveal a validator's private key.
 
-- Block signatures are now based on pre-images for the "signature noise" derivation.
-This implements one of the aspect of Agora's passive slashing policy,
-which is that signing two blocks for the same height reveal a validator's private key.
+- Transaction type has been moved to Output
+    - Previously, transactions had a "type" field that would indicate the type of its output:
+      payment (the default), freeze, or coinbase. This created issues as payment and freeze
+      needed to be mixed (e.g. to avoid creating a refund transaction that was frozen).
+      The `type` field is now part of the `Output`, and may be extended in the future.
 
-Transaction type has been moved to Output
+- Multiple Talos (setup interface) bug fixes
+    - The setup interface had a few issues, where some field would be empty when
+      run in a particular way, making navigating between menus impossible.
+      Those issues have been fixed and the interface now works as expected on all devices.
 
-- Previously, transactions had a "type" field that would indicate the type of its output:
-payment (the default), freeze, or coinbase. This created issues as payment and freeze
-needed to be mixed (e.g. to avoid creating a refund transaction that was frozen).
-The `type` field is now part of the `Output`, and may be extended in the future.
+- Agora will now dynamically export its symbol
+    - Agora now use the `export-dynamic` linker option by default, which should result
+      in proper stack traces on Alpine Linux (and potentially other platforms),
+      at the cost of slightly bigger binary. Stripping the binary will still work.
 
-Multiple Talos (setup interface) bug fixes
+### [v0.8.1](https://github.com/bosagora/agora/releases/tag/v0.8.1) <small>_ 2021-05-26</small>
 
-- The setup interface had a few issues, where some field would be empty when
-run in a particular way, making navigating between menus impossible.
-Those issues have been fixed and the interface now works as expected on all devices.
-
-Agora will now dynamically export its symbol
-
-- Agora now use the `export-dynamic` linker option by default, which should result
-in proper stack traces on Alpine Linux (and potentially other platforms),
-at the cost of slightly bigger binary. Stripping the binary will still work.
-
-### [v0.8.1: Always enable TRACY_ON_DEMAND](https://github.com/bosagora/agora/releases/tag/v0.8.1) <small>_ 2021-05-26</small>
+**Always enable TRACY_ON_DEMAND**  
 
 This is an internal fix that might reduce memory usage for some clients.
 
-### [v0.8.0: Random seed correction, sorted transactions, RBF](https://github.com/bosagora/agora/releases/tag/v0.8.0) <small>_ 2021-05-26</small>
+### [v0.8.0](https://github.com/bosagora/agora/releases/tag/v0.8.0) <small>_ 2021-05-26</small>
+
+**Random seed correction, sorted transactions, RBF**  
 
 Notable changes since last release (v0.7.1):
 
@@ -155,23 +169,31 @@ Notable changes since last release (v0.7.1):
 - Transactions will now sort their inputs and outputs;
 - Ledger will now do a full reset if the validator set is empty, regardless of the UTXOSet being non-empty;
 
-### [v0.7.1: Improved logging for nomination](https://github.com/bosagora/agora/releases/tag/v0.7.1) <small>_ 2021-05-20</small>
+### [v0.7.1](https://github.com/bosagora/agora/releases/tag/v0.7.1) <small>_ 2021-05-20</small>
+
+**Improved logging for nomination**
 
 This release mainly contains enhancements on logging during the nomination phase,
 along with a couple internal improvements.
 
-### [v0.7.0: Major SCP upgrade](https://github.com/bosagora/agora/releases/tag/v0.7.0) <small>_ 2021-05-17</small>
+### [v0.7.0](https://github.com/bosagora/agora/releases/tag/v0.7.0) <small>_ 2021-05-17</small>
+
+**Major SCP upgrade**  
 
 Changes since v0.6.1:
 
 - SCP has been upgraded from v11.2.0 (2019-06-26) to v16.0.0 (2021-04-08).
 
-### [v0.6.1: Minor CI fix on tags push](https://github.com/bosagora/agora/releases/tag/v0.6.1) <small>_ 2021-05-14</small>
+### [v0.6.1](https://github.com/bosagora/agora/releases/tag/v0.6.1) <small>_ 2021-05-14</small>
+
+**Minor CI fix on tags push**  
 
 This release fixes a minor issue that triggered when a tag was pushed.
 One of the test would previously fail to run because it expected a different git object.
 
-### [v0.6.0: Absolute PreImage offsets, greatly improved Flash API, transaction fees](https://github.com/bosagora/agora/releases/tag/v0.6.0) <small>_ 2021-05-14</small>
+### [v0.6.0](https://github.com/bosagora/agora/releases/tag/v0.6.0) <small>_ 2021-05-14</small>
+
+**Absolute PreImage offsets, greatly improved Flash API, transaction fees**  
 
 Notable changes since the last release:
 
@@ -198,7 +220,9 @@ Notable changes since the last release:
 - SCP is now built with clang++ on all platforms;
 - The random seed check no longer mistakenly uses the node state over the block state;
 
-### [v0.5.0: Fixed nomination timer, improved flash API](https://github.com/bosagora/agora/releases/tag/v0.5.0) <small>_ 2021-04-22</small>
+### [v0.5.0](https://github.com/bosagora/agora/releases/tag/v0.5.0) <small>_ 2021-04-22</small>
+
+**Fixed nomination timer, improved flash API**  
 
 - Network discovery period is now configurable (`node.network_discovery_interval_secs`);
 - Nomination interval is now configurable (`validator.nomination_interval`, in seconds);
@@ -211,11 +235,15 @@ Notable changes since the last release:
 - Vanity miner now supports Bech32, and well-known keypairs have been changed accordingly;
 - The node will now stop nominating as soon as it starts shutting down;
 
-### [v0.4.1: Minor build script fixes](https://github.com/bosagora/agora/releases/tag/v0.4.1) <small>_ 2021-04-19</small>
+### [v0.4.1](https://github.com/bosagora/agora/releases/tag/v0.4.1) <small>_ 2021-04-19</small>
+
+**Minor build script fixes**  
 
 Fixes an issue with the build script that led to the version being rendered incorrectly.
 
-### [v0.4.0: Configurable logger, readable SQL databases](https://github.com/bosagora/agora/releases/tag/v0.4.0) <small>_ 2021-04-19</small>
+### [v0.4.0](https://github.com/bosagora/agora/releases/tag/v0.4.0) <small>_ 2021-04-19</small>
+
+**Configurable logger, readable SQL databases**  
 
 - UTXO set is now stored in `utxo` database, validator set in `validator` table;
 - Most tables now use text fields instead of binary ones;
@@ -224,7 +252,9 @@ Fixes an issue with the build script that led to the version being rendered inco
 - Some log messages have been cleaned up to be less confusing / alarming;
 - Loggers can now be configured individually in the config file;
 
-### [v0.3.0: Improved Flash with Wallet API, better catch-up, database restructuring](https://github.com/bosagora/agora/releases/tag/v0.3.0) <small>_ 2021-04-16</small>
+### [v0.3.0](https://github.com/bosagora/agora/releases/tag/v0.3.0) <small>_ 2021-04-16</small>
+
+**Improved Flash with Wallet API, better catch-up, database restructuring**  
 
 - Vibe.d & other libraries have been updated to remove some networking bugs;
 - Flash layer documentation and tests have been enhanced;
@@ -259,7 +289,9 @@ Fixes an issue with the build script that led to the version being rendered inco
 
 [All commits since v0.2.0](https://github.com/bosagora/agora/compare/v0.2.0...v0.3.0)
 
-### [v0.2.0: Flash layer, slashing, block signatures, Bech32, Schnorr everywhere, and more](https://github.com/bosagora/agora/releases/tag/v0.2.0) <small>_ 2021-03-30</small>
+### [v0.2.0](https://github.com/bosagora/agora/releases/tag/v0.2.0) <small>_ 2021-03-30</small>
+
+**Flash layer, slashing, block signatures, Bech32, Schnorr everywhere, and more**  
 
 The following is a non-exhaustive list of major changes since last release:
 
@@ -294,7 +326,9 @@ The following is a non-exhaustive list of major changes since last release:
 
 [All commits since v0.1.0](https://github.com/bosagora/agora/compare/v0.1.0...v0.2.0)
 
-### [v0.1.0: Pre-slashing alpha version](https://github.com/bosagora/agora/releases/tag/v0.1.0) <small>_ 2021-01-08</small>
+### [v0.1.0](https://github.com/bosagora/agora/releases/tag/v0.1.0) <small>_ 2021-01-08</small>
+
+**Pre-slashing alpha version**  
 
 This release is the first tagged alpha version of Agora.
 Agora has been deployed to a test environment for months now,
