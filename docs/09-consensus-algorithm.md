@@ -8,9 +8,9 @@ As blockchains have evolved, so too have the consensus algorithms. The first gen
 
 The next generation of consensus algorithms are based on *Federated Byzantine Agreement* (FBA). Rather than have every node in the blockchain vote on consensus, a network consisting of *quorums* votes on consensus, where each quorum is a set of nodes sufficient to reach an agreement. The consensus process is achieved via the quorums, and the collective agreement of the quorums is used as the final decision of the entire network. FBA powers the [Stellar Network](https://www.stellar.org/), the 8th largest cryptocurrency with a market capitalization of over $2.5 billion.
 
-There are two main features that make FBA suitable for the Bosagora consensus protocol. First, because it doesn’t have to wait to hear from every node, confirmation of the transaction is **fast** (transactions confirm every 3 – 5 seconds). As a utility coin, confirmation speed and low latency are critical to be utilized in a real-life environment.
+There are two main features that make FBA suitable for the Bosagora consensus protocol. First, because it doesn’t have to wait to hear from every node, confirmation of the transaction is fast (transactions confirm every 3 – 5 seconds). As a utility coin, confirmation speed and low latency are critical to be utilized in a real-life environment.
 
-Second, because validators are not chosen by someone or some organization, membership in the blockchain is completely **open** to the public. This is in contrast to the Stellar Network, where everyone who wants to join the network needs permission from someone.
+Second, because validators are not chosen by someone or some organization, membership in the blockchain is completely open to the public. This is in contrast to the Stellar Network, where everyone who wants to join the network needs permission from someone.
 
 ## mFBA
 
