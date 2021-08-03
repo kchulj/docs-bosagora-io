@@ -1,0 +1,67 @@
+# Project information
+site_name: BOSAGORA Documentation
+site_url: https://bosagora-documentation.readthedocs.io/
+site_author: BOSAGORA
+
+# Repository
+repo_name: bosagora/docs-bosagora-io
+repo_url: https://github.com/bosagora/docs-bosagora-io
+edit_uri: ""
+
+# Copyright
+copyright: Copyright &copy; 2021 BOSAGORA
+
+# Configuration
+theme:
+  name: material
+
+  features:
+    - content.code.annotate
+    - content.tabs.link
+    - navigation.instant
+    - navigation.sections
+    - navigation.top
+    - navigation.tracking
+    - search.highlight
+    - search.share
+    - search.suggest
+    - toc.integrate
+
+  favicon: assets/favicon.ico
+  logo: assets/favicon.ico
+
+
+# Customization
+extra:
+  social:
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com/bosagora1
+    - icon: fontawesome/brands/facebook
+      link: https://facebook.com/BOSAGORA
+    - icon: fontawesome/brands/medium
+      link: https://medium.com/bosagora
+    - icon: fontawesome/brands/youtube
+      link: https://www.youtube.com/channel/UCjcTwkskyTmAwHpqv9Oynig
+    - icon: fontawesome/brands/github
+      link: https://github.com/bosagora
+
+# Page tree
+nav:
+  - Home: index.md
+  - New to Bosagora:
+    - What is a Blockchain?: 01-what-is-a-blockchain.md
+    - What is a Cryptocurrency?: 02-what-is-a-cryptocurrency.md
+    - Why The Need For Bosagora?: 03-why-the-need-for-bosagora.md
+    - Bosagora Platform Overview: 04-bosagora-platform-overview.md
+    - Trust Contracts: 05-trust-contracts.md
+    - Proof of Stake: 06-proof-of-stake.md
+    - Bosagora Nodes: 07-bosagora-nodes.md
+    - How to Purchase BOA: 08-how-to-purchase-boa.md
+  - Learn:
+    - Consensus Algorithm: 09-consensus-algorithm.md
+    - DAO: 10-dao.md
+    - UTXO Configuration: 11-utxo-configuration.md
+    - Quorums: 12-quorums.md
+    - Flash Layer: 13-flash-layer.md
+  - Releases:
+    - Changelog: changelog.md

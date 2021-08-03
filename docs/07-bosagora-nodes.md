@@ -10,7 +10,7 @@ Nodes operators in Agora also get to participate in the decision-making of how t
 
 In addition to decision-making opportunities, members of The Congress Network also have financial incentives in the form of BOA rewards. There are two ways for members of The Congress Network to receive BOA rewards: confirmation rewards and transaction fees.
 
-Confirmation rewards are given to a node operator when a block is confirmed. When they act in this capacity, node operators are referred to as *validators*. Transaction fees are applied to all transactions and consist of a **fixed** transaction fee (i.e., it’s the same amount for all transactions) and a **data** fee which is proportional to the size of the transaction data (i.e., larger data transactions cost more).
+Confirmation rewards are given to a node operator when a block is confirmed. When they act in this capacity, node operators are referred to as *validators*. Transaction fees are applied to all transactions and consist of a fixed transaction fee (i.e., it’s the same amount for all transactions) and a data fee which is proportional to the size of the transaction data (i.e., larger data transactions cost more).
 
 ## Full Nodes
 
