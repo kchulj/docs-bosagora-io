@@ -12,7 +12,7 @@ In addition to decision-making opportunities, members of The Congress Network al
 
 Confirmation rewards are given to a node operator when a block is confirmed. When they act in this capacity, node operators are referred to as *validators*. Transaction fees are applied to all transactions and consist of a fixed transaction fee (i.e., it’s the same amount for all transactions) and a data fee which is proportional to the size of the transaction data (i.e., larger data transactions cost more).
 
-## Full Nodes
+## Nodes
 
 To run a full node and receive an incentive as a validator, one must freeze some BOA. The frozen BOA function as a security deposit against any attempt to forge the blockchain. In other words, if a node tries to forge the blockchain, some of the frozen BOA will be confiscated and sent to the Commons Budget account.
 
