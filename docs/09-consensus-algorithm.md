@@ -2,7 +2,7 @@
 
 The consensus algorithm is central to any blockchain-based currency or system. The consensus algorithm attempts to answer the question, “How can we prove with confidence that all distributed databases hold the same set of information?”
 
-As blockchains have evolved, so too have the consensus algorithms. The first generation was based on a *Byzantine Agreement* (BA). BA requires that all the nodes in the blockchain form a consensus. Requiring unanimous agreement can be challenging as the number of blockchain nodes grows.Z
+As blockchains have evolved, so too have the consensus algorithms. The first generation was based on a *Byzantine Agreement* (BA). BA requires that all the nodes in the blockchain form a consensus. Requiring unanimous agreement can be challenging as the number of blockchain nodes grows.
 
 ## FBA
 
