@@ -2,6 +2,26 @@
 
 ## [bosagora/agora](https://github.com/bosagora/agora)
 
+### [v0.16.0](https://github.com/bosagora/agora/releases/tag/v0.16.0) <small>_ 2021-08-04</small>
+
+**Improved logging, multiple minor crashes fixed, better libconsensus**  
+
+Major improvements since v0.15.0:
+
+- The `/validators` endpoint will now longer return a 500 when called with `height=0`;
+- `Ledger.getValidators`: Return only validators that are not yet slashed;
+- Remove an ambiguous usage of `PublicKey` (instead of UTXO) in signature aggregation;
+- Key mapping have been removed from the EnrollmentManager, reducing memory usage;
+- BitMask: Fixed serialization to not duplicate the length field, fixing a DoS vector;
+- Admin endpoints now require the use of TLS (HTTPS);
+- Admin endpoints now support basic auth, which can be configured from the config file;
+- Some logging statements have been adjusted, resulting in less noise being produced at `Info` level;
+- Validator nodes that cannot enroll, regardless of the reason, will no longer crash on shutdown;
+- SCP logging will now produce human-readable strings for node ID;
+- SCP logging is now fully configurable, including trace / debug level, like any other logging system;
+- UTXODB will now always return ordered UTXO;
+- Renamed endpoint stats for `GET /block_height` from `block_heigth` to `block_height`;
+
 ### [v0.15.0](https://github.com/bosagora/agora/releases/tag/v0.15.0) <small>_ 2021-07-27</small>
 
 **Signature fixes, flash fees, better stats & config**  
